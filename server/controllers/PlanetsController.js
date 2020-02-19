@@ -9,6 +9,7 @@ export default class PlanetController {
       .get("", this.getAll)
       .get("/:id", this.getById)
       .put("/:id", this.edit)
+      .put("/:id/addMoons", this.addMoons)
       .post("", this.create)
       .delete("/:id", this.delete)
   }
@@ -35,6 +36,14 @@ export default class PlanetController {
       return res.send(data);
     } catch (error) {
       next(error);
+    }
+  }
+  async addMoons(req, res, next) {
+    try {
+      let data = await planetService.addMoons(req.params.id, req.body);
+      return res.send(data)
+    } catch (error) {
+      next(error)
     }
   }
   async create(req, res, next) {

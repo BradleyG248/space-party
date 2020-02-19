@@ -36,10 +36,12 @@ server.use(bp.json());
 
 //NOTE we have to import access to our controllers
 import PlanetsController from "./controllers/PlanetsController";
-
+import StarsController from "./controllers/StarsController";
+import MoonsController from "./controllers/MoonsController"
 //NOTE remember the forward slash at the start of your path!
 server.use("/api/planets", new PlanetsController().router);
-
+server.use("/api/stars", new StarsController().router);
+server.use("/api/moons", new MoonsController().router);
 //NOTE Everything below this line always stays the same
 
 //NOTE Default error handler, catches all routes with an error attached

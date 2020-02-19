@@ -4,6 +4,17 @@ import Planet from "../models/Planet";
 const _repository = mongoose.model("Planet", Planet);
 
 class PlanetService {
+  async addMoons(id, moons) {
+    let planet = await _repository.findById(id)
+    // @ts-ignore
+    planet.moons = [...planet.moons, ...moons];
+    // @ts-ignore
+    planet.moons.forEach(moon => {
+      // @ts-ignore
+      planet.moons.push(moon);
+    })
+    await planet.save();
+  }
   async delete(id) {
     await _repository.findByIdAndDelete(id)
   }
